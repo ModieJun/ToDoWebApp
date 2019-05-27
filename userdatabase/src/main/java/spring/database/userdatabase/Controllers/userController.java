@@ -2,11 +2,11 @@ package spring.database.userdatabase.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 import spring.database.userdatabase.Model.User;
 import spring.database.userdatabase.database.UserRepository;
 
-@Controller
+@RestController
 @RequestMapping("/userdatabase")
 public class userController {
     @Autowired
