@@ -30,6 +30,12 @@ public class userController {
         return userRepository.findAll();
     }
 
+    @Getmapping("/{username}")
+    public String getUserInfo(@PathVariable String username){
+        User user = userRepository.findByUsername(username);
+        return user;
+    }
+
 
 
 
