@@ -4,36 +4,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 import spring.database.userdatabase.Model.User;
+import spring.database.userdatabase.Service.UserService;
 import spring.database.userdatabase.database.UserRepository;
 
 @RestController
 @RequestMapping("/userdatabase")
 public class userController {
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @GetMapping("/add")
     public @ResponseBody String addNewUser(@RequestParam String username, @RequestParam String password){
-        User user= new User(username,password);
-        if (userRepository.findByUsername(user.getUsername())!=null){
-            return  "User already Exists";
+        Boolean result =userService.addUser(username,password);
+        if (result==false) {
+            return  "User Already Exists"
         }
-
-        userRepository.save(user);
-
         return "Saved";
     }
 
     @GetMapping("/all")
     public @ResponseBody Iterable<User> getAllUsers(){
 //        Returns Json
-        return userRepository.findAll();
+        return userService.getAllUsers();
     }
 
     @Getmapping("/{username}")
     public String getUserInfo(@PathVariable String username){
-        User user = userRepository.findByUsername(username);
-        return user;
+        return  userService.getUser(username);
     }
 
 
