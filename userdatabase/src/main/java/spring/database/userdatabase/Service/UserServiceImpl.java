@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import spring.database.userdatabase.Model.User;
 import spring.database.userdatabase.database.UserRepository;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -25,7 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public Iterable<User> getAllUsers() {
         return userRepository.findAll();
     }
 
