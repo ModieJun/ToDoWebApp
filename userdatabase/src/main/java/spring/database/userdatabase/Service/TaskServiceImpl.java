@@ -24,4 +24,9 @@ public class TaskServiceImpl implements TaskService {
         List<Object> tasks= Collections.singletonList(taskRepository.findAllByUserid(id));
         return  tasks;
     }
+
+    @Override
+    public void deleteTask(Task task) {
+        taskRepository.delete(task);
+    }
 }
