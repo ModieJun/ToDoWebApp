@@ -7,7 +7,7 @@ import spring.database.userdatabase.Service.TaskService;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/todos")
 public class taskController {
 
