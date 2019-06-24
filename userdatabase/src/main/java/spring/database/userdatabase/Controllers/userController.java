@@ -6,10 +6,15 @@ import spring.database.userdatabase.Model.User;
 import spring.database.userdatabase.Service.UserService;
 
 @RestController
-@RequestMapping("/userdatabase")
+@RequestMapping("/")
 public class userController {
     @Autowired
     private UserService userService;
+
+    @GetMapping()
+    public @ResponseBody String ping (){
+        return "Awe";
+    }
 
     @GetMapping("/add")
     public @ResponseBody
