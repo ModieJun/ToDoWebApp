@@ -16,12 +16,11 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public Boolean addUser(String username, String Password) {
-        if(userRepository.findByUsername(username)!=null){
+    public Boolean addUser(User newUser) {
+        if(userRepository.findByUsername(newUser.getUsername())!=null){
             return false;
         }
-        User user = new User(username,Password);
-        userRepository.save(user);
+        userRepository.save(newUser);
 
         return true;
     }

@@ -15,9 +15,15 @@ public class taskController {
     @Autowired
     private TaskService taskService;
 
+    @PostMapping("/add")
+    public @ResponseBody String addTodo(@RequestBody Task newtask){
+        taskService.saveTask(newtask);
+        return "saved";
+    }
+
     @GetMapping("/{id}/all")
-    public  @ResponseBody List<Object> getAllTodos(@PathVariable Long id){
-        List<Object> todos=taskService.getAllTasks( id);
+    public  @ResponseBody List<Task> getAllTodos(@PathVariable Long id){
+        List<Task> todos=taskService.getAllTasks( id);
 
         return todos;
     }

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import spring.database.userdatabase.Model.Task;
 import spring.database.userdatabase.database.TaskRepository;
 
-import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -16,12 +16,13 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void saveTask(Task task) {
-        saveTask(task);
+        task.setDueDate(new Date());
+        taskRepository.save(task);
     }
 
     @Override
-    public List<Object> getAllTasks(long id) {
-        List<Object> tasks= Collections.singletonList(taskRepository.findAllByUserid(id));
+    public List<Task> getAllTasks(long id) {
+        List<Task> tasks= taskRepository.findAllByUserid(id);
         return  tasks;
     }
 
