@@ -11,17 +11,21 @@ public class Task {
     private Long id;
 
 //    Still need to work on this db relationship , one user many tasks
-    private long userid;
+    @ManyToOne
+    @JoinColumn
+    private User user;
 
     private  String description;
-
+    /*
+    @TODO
+        Need to write method to pass the data from the json body into the entity, "12/09/1222" doesnt not work
+     */
     private Date dueDate;
 
     public Task() {
     }
 
-    public Task(long userid, String description, Date dueDate) {
-        this.userid = userid;
+    public Task( String description, Date dueDate) {
         this.description = description;
         this.dueDate = dueDate;
     }
@@ -34,12 +38,12 @@ public class Task {
         this.id = id;
     }
 
-    public long getUserid() {
-        return userid;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserid(long userid) {
-        this.userid = userid;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getDescription() {

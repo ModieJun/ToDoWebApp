@@ -6,8 +6,6 @@ import spring.database.userdatabase.Model.Task;
 import spring.database.userdatabase.database.TaskRepository;
 
 import java.util.Date;
-import java.util.List;
-
 @Service
 public class TaskServiceImpl implements TaskService {
 
@@ -21,9 +19,9 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> getAllTasks(long id) {
-        List<Task> tasks= taskRepository.findAllByUserid(id);
-        return  tasks;
+    public Iterable<Task> getAllTasks( ) {
+        taskRepository.findAll().forEach((x)-> System.out.println(x.getDescription()));
+        return taskRepository.findAll();
     }
 
     @Override

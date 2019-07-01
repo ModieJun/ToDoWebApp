@@ -23,10 +23,16 @@ public class taskController {
 
     @GetMapping("/{id}/all")
     public  @ResponseBody List<Task> getAllTodos(@PathVariable Long id){
-        List<Task> todos=taskService.getAllTasks( id);
+//        List<Task> todos=taskService.getAllTasks( );
 
-        return todos;
+        return null;
     }
+
+    @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
+    public Iterable<Task> getAll() {
+        return taskService.getAllTasks();
+    }
+
 
     @DeleteMapping("/{id}")
     public void deleteTodo(@ModelAttribute Task task,@PathVariable Long id){

@@ -1,9 +1,9 @@
 package spring.database.userdatabase.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Entity
 public class User {
@@ -14,15 +14,30 @@ public class User {
     private String username;
     private String password;
 
-    public User() {
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private Set<Task> tasks;
 
+    public User() {
+        System.err.println("Invoked empty");
     }
 
-    public User(String username, String password) {
+    public User(String username, String password,Task... tasks) {
+        System.err.println("Invoked");
         this.username=username;
         this.password=password;
+        this.tasks= Stream.of(tasks).collect(Collectors.toSet());
+        this.tasks.forEach(x->x.setUser(this));
     }
 
+
+    public Set<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
+        this.tasks.forEach((task -> task.setUser(this)));
+    }
     public Long getId() {
         return id;
     }

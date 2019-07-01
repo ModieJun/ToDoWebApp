@@ -4,8 +4,9 @@ import spring.database.userdatabase.Model.Task;
 
 import java.util.List;
 
+
 public interface TaskService  {
     void saveTask(Task task);
-    List<Task> getAllTasks(long id);
+    Iterable<Task> getAllTasks( );
     void deleteTask(Task task);
 }
