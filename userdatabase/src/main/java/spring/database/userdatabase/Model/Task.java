@@ -1,5 +1,7 @@
 package spring.database.userdatabase.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -11,8 +13,9 @@ public class Task {
     private Long id;
 
 //    Still need to work on this db relationship , one user many tasks
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn
+    @JsonIgnore
     private User user;
 
     private  String description;

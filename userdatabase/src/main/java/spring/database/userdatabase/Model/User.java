@@ -15,6 +15,7 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    @Column
     private Set<Task> tasks;
 
     public User() {
