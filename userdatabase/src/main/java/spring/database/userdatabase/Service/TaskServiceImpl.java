@@ -3,6 +3,7 @@ package spring.database.userdatabase.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring.database.userdatabase.Model.Task;
+import spring.database.userdatabase.Model.User;
 import spring.database.userdatabase.database.TaskRepository;
 
 import java.util.Date;
@@ -22,6 +23,11 @@ public class TaskServiceImpl implements TaskService {
     public Iterable<Task> getAllTasks( ) {
         taskRepository.findAll().forEach((x)-> System.out.println(x.getDescription()));
         return taskRepository.findAll();
+    }
+
+    @Override
+    public Iterable<Task> getAllTasksByUser(Long userId ) {
+        return taskRepository.findByUser_Id(userId);
     }
 
     @Override
